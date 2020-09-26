@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrugStore.Model.CategoryModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,5 +14,7 @@ namespace DrugStore.Model.ProductModel
         public float Price { get; set; }
         public int Quantity { get; set; }
         public string Code { get; set; }
+        public ICollection<CategoryForGet> categoryForGets { get; set; }
+ = new List<CategoryForGet>();
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DrugStore.Entities
 {
-    public class Products
+    public class Product
     {
         public int ProductId { get; set; }
         public string ProductName { get; set; }
@@ -18,11 +18,10 @@ namespace DrugStore.Entities
         public int Quantity { get; set; }
         public string Description { get; set; }
         public string ProductImage { get; set; }
-        public string Code { get; set; }
         public string BarCode { get; set; }
         public float BuyPrice { get; set; }
-        public ICollection<ProductCategory> ProductCategory { get; set; }
-= new List<ProductCategory>();
+        public ICollection<ProductAndCategory> ProductCategory { get; set; }
+= new List<ProductAndCategory>();
         public ICollection<TransportInvoice> transportInvoices { get; set; }
 = new List<TransportInvoice>();
         public ICollection<CustomerInvoice> CustomerInvoices { get; set; }

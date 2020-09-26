@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace DrugStore.Entities
 {
-    public class ProductCategory
+    public class ProductAndCategory
     {
-        public Products Products { get; set; }
+        public Product Products { get; set; }
         public int ProductId { get; set; }
-        public Categories Categories { get; set; }
+        public Category Categories { get; set; }
         public int CategoryId { get; set; }
     }
 }

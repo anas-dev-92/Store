@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DrugStore.Controller
 {
-    [Route("api/[controller]")]
+    [Route("api/Category")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace DrugStore.Controller
         public async Task<IActionResult> GetCategory()
         {
             var categories = await _category.GetCategory();
-            return Ok(_mapper.Map<CategoryForGet>(categories));
+            return Ok(_mapper.Map<IEnumerable<CategoryForGet>>(categories));
         }
         [HttpGet]
         [Route("{id}", Name = "GetCategory")]
@@ -44,13 +44,14 @@ namespace DrugStore.Controller
         [HttpPost]
         public async Task<IActionResult> CreateCategory([FromBody] CategoryForCreate categoryForCreate)
         {
-            var categoryEntity = _mapper.Map<Categories>(categoryForCreate);
+            var categoryEntity = _mapper.Map<Category>(categoryForCreate);
             _category.CreateCategory(categoryEntity);
             await _category.SaveChanges();
-            var categoryReturn = _mapper.Map<CategoryForGet>(categoryEntity);
-            return CreatedAtRoute("GetCategory",
-                new { categoryId = categoryReturn.CategoryId },
-                categoryReturn);
+            return Ok(categoryEntity);
+            //var categoryReturn = _mapper.Map<CategoryForGet>(categoryEntity);
+            //return CreatedAtRoute("GetCategory",
+            //    new { categoryId = categoryReturn.CategoryId },
+            //    categoryReturn);
         }
         [HttpPatch]
         public async Task<IActionResult> UpdateCategory(int Id, [FromBody] JsonPatchDocument<CategoryForUpdate> jsonPatch)

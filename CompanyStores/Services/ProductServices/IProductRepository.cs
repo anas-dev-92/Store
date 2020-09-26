@@ -1,4 +1,5 @@
 ﻿using DrugStore.Entities;
+using DrugStore.Model.ProductModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,11 @@ namespace DrugStore.Services.ProductServices
 {
     public interface IProductRepository
     {
-        Task<IEnumerable<Products>> GetProduct();
-        Task<Products> GetProductById(int Id);
-        void CreateProduct(Products products);
-        void UpdateProduct(Products products, int Id);
-        void DeleteProduct(Products products);
+        Task<IEnumerable<Product>> GetProduct();
+        Task<Product> GetProductById(int Id);
+        void CreateProduct(ProductForCreate productForCreate);
+        void UpdateProduct(Product products, int Id);
+        void DeleteProduct(Product products);
         Task<bool> ProductExist(int Id);
         Task<bool> SaveChanges();
     }

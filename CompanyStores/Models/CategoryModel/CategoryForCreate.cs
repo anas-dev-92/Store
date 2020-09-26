@@ -8,5 +8,6 @@ namespace DrugStore.Model.CategoryModel
     public class CategoryForCreate
     {
         public string CategoryName { get; set; }
+        public int CompanyStoresId { get; set; }
     }
 }

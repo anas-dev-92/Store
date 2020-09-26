@@ -10,9 +10,9 @@ namespace DrugStore.Profiles.ProductProfile
     {
         public ProductProfile()
         {
-            CreateMap<Entities.Products, Model.ProductModel.ProductForGet>();
-            CreateMap<Model.ProductModel.ProductForCreate, Entities.Products>();
-            CreateMap<Entities.Products, Model.ProductModel.ProductForUpdate>().ReverseMap();
+            CreateMap<Entities.Product, Model.ProductModel.ProductForGet>();
+            CreateMap<Model.ProductModel.ProductForCreate, Entities.Product>();
+            CreateMap<Entities.Product, Model.ProductModel.ProductForUpdate>().ReverseMap();
         }
     }
 }

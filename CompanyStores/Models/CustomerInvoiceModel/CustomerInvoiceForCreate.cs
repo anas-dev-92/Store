@@ -15,7 +15,7 @@ namespace DrugStore.Model.CustomerInvoiceModel
         public int ProductId { get; set; }
         public DateTime InvoiceDate { get; set; }
         public string InvoiceNote { get; set; }
-        public ICollection<Products> Product { get; set; }
- = new List<Products>();
+        public ICollection<Product> Product { get; set; }
+ = new List<Product>();
     }
 }

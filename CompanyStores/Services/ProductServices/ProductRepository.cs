@@ -1,4 +1,5 @@
 ﻿using DrugStore.Entities;
+using DrugStore.Model.ProductModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,26 +16,35 @@ namespace DrugStore.Services.ProductServices
         {
             _drugDbContext = drugDbContext ?? throw new ArgumentNullException(nameof(drugDbContext));
         }
-        public void CreateProduct(Products products)
+        public void CreateProduct(ProductForCreate productForCreate)
         {
-            if (products == null)
+            Category category;
+            category = _drugDbContext.Categories.Find(productForCreate.CategoryId);
+            var product = new Product
             {
-                throw new ArgumentNullException(nameof(products));
-            }
-            _drugDbContext.Products.Add(products);
+                ProductName = productForCreate.ProductName,
+                Company = productForCreate.Company,
+                Price = productForCreate.Price,
+                Quantity = productForCreate.Quantity,
+                BarCode = productForCreate.BarCode,
+                CompanyStoresId = productForCreate.CompanyStoresId
+            };
+            category.ProductCategory.Add(new ProductAndCategory { Products = product });
+            _drugDbContext.Categories.Attach(category);
+            _drugDbContext.SaveChanges();
         }
 
-        public void DeleteProduct(Products products)
+        public void DeleteProduct(Product products)
         {
             _drugDbContext.Products.Remove(products);
         }
 
-        public async Task<IEnumerable<Products>> GetProduct()
+        public async Task<IEnumerable<Product>> GetProduct()
         {
             return await _drugDbContext.Products.ToListAsync();
         }
 
-        public async Task<Products> GetProductById(int Id)
+        public async Task<Product> GetProductById(int Id)
         {
 
             return await _drugDbContext.Products.Where(p => p.ProductId == Id)
@@ -51,7 +61,7 @@ namespace DrugStore.Services.ProductServices
             return (await _drugDbContext.SaveChangesAsync() > 0);
         }
 
-        public void UpdateProduct(Products products, int Id)
+        public void UpdateProduct(Product products, int Id)
         {
 
         }

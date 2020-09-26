@@ -15,7 +15,7 @@ namespace DrugStore.Services.CategoryServices
         {
             _drugDbContext = drugDbContext ?? throw new ArgumentNullException(nameof(drugDbContext));
         }
-        public void CreateCategory(Categories categories)
+        public void CreateCategory(Category categories)
         {
             if (categories == null)
             {
@@ -24,17 +24,17 @@ namespace DrugStore.Services.CategoryServices
             _drugDbContext.Categories.Add(categories);
         }
 
-        public void DeleteCategory(Categories categories)
+        public void DeleteCategory(Category categories)
         {
             _drugDbContext.Categories.Remove(categories);
         }
 
-        public async Task<IEnumerable<Categories>> GetCategory()
+        public async Task<IEnumerable<Category>> GetCategory()
         {
             return await _drugDbContext.Categories.ToListAsync();
         }
 
-        public async Task<Categories> GetCategoryById(int Id)
+        public async Task<Category> GetCategoryById(int Id)
         {
             return await _drugDbContext.Categories.SingleOrDefaultAsync(s => s.CategoryId == Id);
         }
@@ -49,7 +49,7 @@ namespace DrugStore.Services.CategoryServices
             return await _drugDbContext.Categories.AnyAsync(s => s.CategoryId == Id);
         }
 
-        public void UpdateCategory(Categories invoice, int Id)
+        public void UpdateCategory(Category invoice, int Id)
         {
 
         }

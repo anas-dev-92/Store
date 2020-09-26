@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using DrugStore.Entities;
 using DrugStore.Model.ProductModel;
 using DrugStore.Services.CompanyStoreervices;
 using DrugStore.Services.ProductServices;
@@ -45,22 +46,22 @@ namespace DrugStore.Controller
             return Ok(_mapper.Map<ProductForGet>(products));
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateProduct(int companyId,[FromBody] ProductForCreate productForCreate)
-        //{
-        //    if (!_companyRepo.CompanyStoresExist(companyId))
-        //    {
-        //        return NotFound();
-        //    }
-        //    var productEntity = _mapper.Map<Products>(productForCreate);
-        //    _productRepo.CreateProduct(companyId,productEntity);
-        //    await _productRepo.SaveChanges();
-        //    var productReturn = _mapper.Map<ProductForGet>(productEntity);
-        //    //return CreatedAtRoute("GetProduct",
-        //    //    new { productId = productReturn.ProductId },
-        //    //    productReturn);
-        //    return Ok(productReturn);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct([FromBody] ProductForCreate productForCreate)
+        {
+            //if (!_companyRepo.CompanyStoresExist(companyId))
+            //{
+            //    return NotFound();
+            //}
+             _productRepo.CreateProduct(productForCreate);
+            
+            await _productRepo.SaveChanges();
+            //var productReturn = _mapper.Map<ProductForGet>(productEntity);
+            ////return CreatedAtRoute("GetProduct",
+            ////    new { productId = productReturn.ProductId },
+            ////    productReturn);
+            return Ok();
+        }
         [HttpPatch]
         public async Task<IActionResult> UpdateProduct(int Id, [FromBody]JsonPatchDocument<ProductForUpdate> jsonPatch)
         {

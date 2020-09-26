@@ -16,12 +16,12 @@ namespace DrugStore.Entities
         public string StoreImage { get; set; }
         public ICollection<Admin> Admins { get; set; }
         = new List<Admin>();
-        public ICollection<Products> Products { get; set; }
-        = new List<Products>();
+        public ICollection<Product> Products { get; set; }
+        = new List<Product>();
         public ICollection<Invoice> Invoices { get; set; }
         = new List<Invoice>();
-        public ICollection<Categories> Categories { get; set; }
-        = new List<Categories>();
+        public ICollection<Category> Categories { get; set; }
+        = new List<Category>();
         public ICollection<PaymentBill> PaymentBills { get; set; }
         = new List<PaymentBill>();
         public ICollection<TakeBill> TakeBills { get; set; }

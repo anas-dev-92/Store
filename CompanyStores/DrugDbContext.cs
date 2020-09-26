@@ -20,13 +20,13 @@ namespace DrugStore
         public DbSet<CustomerInvoice> CustomerInvoices { get; set; }
         public DbSet<CompanyStore> CompanyStore { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
-        public DbSet<Products> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<ProductsReturn> ProductsReturns { get; set; }
         public DbSet<PaymentBill> PaymentBills { get; set; }
-        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<TakeBill> TakeBills { get; set; }
         public DbSet<TransportInvoice> transportInvoices { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductAndCategory> ProductCategories { get; set; }
 
         public DrugDbContext(DbContextOptions<DrugDbContext> options) : base(options)
         {
@@ -34,15 +34,15 @@ namespace DrugStore
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ProductCategory>().HasKey(sc => new { sc.ProductId, sc.CategoryId });
-            modelBuilder.Entity<ProductCategory>()
-             .HasOne<Products>(sc => sc.Products)
+            modelBuilder.Entity<ProductAndCategory>().HasKey(sc => new { sc.ProductId, sc.CategoryId });
+            modelBuilder.Entity<ProductAndCategory>()
+             .HasOne<Product>(sc => sc.Products)
              .WithMany(s => s.ProductCategory)
              .HasForeignKey(sc => sc.ProductId);
 
 
-            modelBuilder.Entity<ProductCategory>()
-                .HasOne<Categories>(sc => sc.Categories)
+            modelBuilder.Entity<ProductAndCategory>()
+                .HasOne<Category>(sc => sc.Categories)
                 .WithMany(s => s.ProductCategory)
                 .HasForeignKey(sc => sc.CategoryId);
 
@@ -292,12 +292,12 @@ namespace DrugStore
                  .IsRequired(false)
                  .OnDelete(DeleteBehavior.NoAction);
             });
-                modelBuilder.Entity<Categories>(entity =>
+                modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasKey(s => s.CategoryId);
                 entity.Property(s => s.CategoryName).HasColumnType("nvarchar(150)").IsRequired();
             });
-            modelBuilder.Entity<Categories>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasOne(ca => ca.CompanyStores)
                        .WithMany(cs => cs.Categories)
@@ -305,16 +305,16 @@ namespace DrugStore
                        .IsRequired(false)
                        .OnDelete(DeleteBehavior.NoAction);
             });
-            modelBuilder.Entity<Products>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(p => p.ProductId);
                 entity.Property(m => m.ProductName).HasColumnType("nvarchar(50)").IsRequired();
                 entity.Property(m => m.Company).HasColumnType("nvarchar(50)").IsRequired();
                 entity.Property(m => m.Price).IsRequired();
                 entity.Property(m => m.Quantity).IsRequired();
-                entity.Property(m => m.Code).HasColumnType("varchar(500)");
+                entity.Property(m => m.BarCode).HasColumnType("varchar(500)");
             });
-            modelBuilder.Entity<Products>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasOne(p => p.CompanyStores)
                        .WithMany(cs => cs.Products)

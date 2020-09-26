@@ -9,5 +9,6 @@ namespace DrugStore.Model.CategoryModel
     {
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public int CompanyStoresId { get; set; }
     }
 }

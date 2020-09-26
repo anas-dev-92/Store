@@ -11,7 +11,7 @@ namespace DrugStore.Entities
     public class Invoice
     {
         public int InvoiceId { get; set; }
-        public DateTime InvoiceDate { get; set; }
+        public DateTimeOffset InvoiceDate { get; set; } = DateTimeOffset.UtcNow;
         public string InvoiceNote { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }

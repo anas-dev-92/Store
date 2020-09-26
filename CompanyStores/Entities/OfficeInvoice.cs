@@ -13,7 +13,7 @@ namespace DrugStore.Entities
         public float Discount { get; set; }
         public float TotalPrice { get; set; }
         public int ProductsId { get; set; }
-        public Products Products { get; set; }
+        public Product Products { get; set; }
         public int BuyInvoiceId { get; set; }
         public BuyInvoice BuyInvoice { get; set; }
     }

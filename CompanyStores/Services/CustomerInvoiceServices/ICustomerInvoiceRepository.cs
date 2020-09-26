@@ -1,4 +1,7 @@
-﻿using DrugStore.Entities;
+﻿using CompanyStores.Entities;
+using CompanyStores.Models.CustomerInvoiceModel;
+using DrugStore.Entities;
+using DrugStore.Model.InvoiceModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +12,7 @@ namespace DrugStore.Services.CustomerInvoiceServices
     public interface ICustomerInvoiceRepository
     {
         Task<IEnumerable<CustomerInvoice>> GetCustomerInvoice();
-        void CreateInvoiceWithProduct(CustomerInvoice customerInvoice);
+        Task<ServicesResponse<InvoiceForGet>> AddCustomerInvoice(AddCustomerInvoice addCustomerInvoice);
         Task<CustomerInvoice> GetCustomerInvoiceById(int Id);
         void CreateCustomerInvoice(CustomerInvoice customerInvoice);
         void UpdateCustomerInvoice(CustomerInvoice customerInvoice, int Id);

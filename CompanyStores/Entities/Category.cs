@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace DrugStore.Entities
 {
-    public class Categories
+    public class Category
     {
         [Key]
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public ICollection<ProductCategory> ProductCategory { get; set; }
-       = new List<ProductCategory>();
+        public ICollection<ProductAndCategory> ProductCategory { get; set; }
+       = new List<ProductAndCategory>();
         public int CompanyStoresId { get; set; }
         public CompanyStore CompanyStores { get; set; }
     }

@@ -13,8 +13,8 @@ namespace DrugStore.Model.InvoiceModel
         public int AdminId { get; set; }
         public int CustomerId { get; set; }
         public int CompanyStoresId { get; set; }
-        public ICollection<Products> Products { get; set; }
-        = new List<Products>();
+        public ICollection<Product> Products { get; set; }
+        = new List<Product>();
 
     }
 }

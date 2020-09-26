@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CompanyStores.Services.ProductCategory;
 using DrugStore;
 using DrugStore.Helper;
+using DrugStore.Services.CategoryServices;
 using DrugStore.Services.CompanyStoreervices;
 using DrugStore.Services.CustomerServices;
 using DrugStore.Services.InvoiceServices;
@@ -53,10 +55,12 @@ namespace CompanyStores
             //services.AddTransient<ILoggingBroker, LoggingBroker>();
             //services.AddScoped<IAdminsRepository, AdminsRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IinvoiceRepository, InvoiceRepository>();
             //services.AddScoped<ITakeBillRepository, TakeBillRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICompanyStoreRepository, CompanyStoreRepository>();
+            services.AddScoped<IProductCategory, ProductCategorysRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

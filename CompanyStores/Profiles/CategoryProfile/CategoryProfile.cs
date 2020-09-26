@@ -10,9 +10,9 @@ namespace DrugStore.Profiles.CategoryProfile
     {
         public CategoryProfile()
         {
-            CreateMap<Entities.Categories, Model.CategoryModel.CategoryForGet>();
-            CreateMap<Model.CategoryModel.CategoryForCreate, Entities.Categories>();
-            CreateMap<Entities.Categories, Model.CategoryModel.CategoryForUpdate>().ReverseMap();
+            CreateMap<Entities.Category, Model.CategoryModel.CategoryForGet>();
+            CreateMap<Model.CategoryModel.CategoryForCreate, Entities.Category>();
+            CreateMap<Entities.Category, Model.CategoryModel.CategoryForUpdate>().ReverseMap();
         }
     }
 }

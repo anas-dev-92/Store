@@ -15,7 +15,7 @@ namespace DrugStore.Entities
         public int InvoiceId { get; set; }
         public Invoice Invoice { get; set; }
         public int ProductId { get; set; }
-        public Products Products { get; set; }
+        public Product Products { get; set; }
         public ICollection<ProductsReturn> ProductsReturn { get; set; }
        = new List<ProductsReturn>();
     }

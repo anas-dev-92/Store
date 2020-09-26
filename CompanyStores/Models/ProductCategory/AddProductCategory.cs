@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DrugStore.Model.ProductModel
+namespace CompanyStores.Models.ProductCategory
 {
-    public class ProductForCreate
+    public class AddProductCategory
     {
 
+        public string CategoryName { get; set; }
         public string ProductName { get; set; }
         public string Company { get; set; }
         public float Price { get; set; }
@@ -16,9 +16,7 @@ namespace DrugStore.Model.ProductModel
         public string Description { get; set; }
         public string ProductImage { get; set; }
         public string BarCode { get; set; }
-        public float BuyPrice { get; set; }
         public int CompanyStoresId { get; set; }
         public int CategoryId { get; set; }
-
     }
 }

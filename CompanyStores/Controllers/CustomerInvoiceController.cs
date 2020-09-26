@@ -43,30 +43,6 @@ namespace DrugStore.Controller
             return Ok(cinvoice);
         }
         [HttpPost]
-        public IActionResult Create(CustomerInvoiceForCreate viewModel)
-        {
-
-            var invoice = new Invoice
-            {
-                InvoiceDate = viewModel.InvoiceDate,
-                InvoiceNote = viewModel.InvoiceNote,
-            };
-            _context.Add(invoice);
-
-            foreach (var item in Products)
-            {
-                _context.Add(new CustomerInvoice
-                {
-                    Invoice = invoice,
-                    Products = item
-                });
-            }
-
-            _context.SaveChanges();
-
-            return View();
-        }
-        [HttpPost]
         public async Task<IActionResult> CreateCustomerInvoice([FromBody] CustomerInvoiceForCreate customerInvoiceForCreate)
         {
 
