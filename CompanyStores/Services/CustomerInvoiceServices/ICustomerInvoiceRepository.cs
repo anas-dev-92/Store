@@ -12,7 +12,8 @@ namespace DrugStore.Services.CustomerInvoiceServices
     public interface ICustomerInvoiceRepository
     {
         Task<IEnumerable<CustomerInvoice>> GetCustomerInvoice();
-        Task<ServicesResponse<InvoiceForGet>> AddCustomerInvoice(AddCustomerInvoice addCustomerInvoice);
+        //Task<ServicesResponse<InvoiceForGet>> AddCustomerInvoice(AddCustomerInvoice addCustomerInvoice);
+        //bool CreateInvoice(List<int> ProductId, Invoice invoice);
         Task<CustomerInvoice> GetCustomerInvoiceById(int Id);
         void CreateCustomerInvoice(CustomerInvoice customerInvoice);
         void UpdateCustomerInvoice(CustomerInvoice customerInvoice, int Id);

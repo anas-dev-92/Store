@@ -1,6 +1,7 @@
 ﻿using DrugStore.Entities;
 using DrugStore.Model.ProductModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,26 @@ namespace DrugStore.Services.ProductServices
         {
             _drugDbContext = drugDbContext ?? throw new ArgumentNullException(nameof(drugDbContext));
         }
+        //public void CreateProduct(ProductForCreate productForCreate)
+        //{
+        //    List<product> theList = _drugDbContext.Products.Where(c => c.productId == productForCreate.productid).ToList();
+        //    var product = new Product
+        //    {
+        //        ProductName = productForCreate.ProductName,
+        //        Company = productForCreate.Company,
+        //        Price = productForCreate.Price,
+        //        Quantity = productForCreate.Quantity,
+        //        BarCode = productForCreate.BarCode,
+        //        CompanyStoresId = productForCreate.CompanyStoresId,
+        //    };
+            
+        //    _drugDbContext.Products.Add(product);
+        //    _drugDbContext.Categories.Attach(category);
+        //    _drugDbContext.SaveChanges();
+        //}
         public void CreateProduct(ProductForCreate productForCreate)
         {
-            Category category;
-            category = _drugDbContext.Categories.Find(productForCreate.CategoryId);
+
             var product = new Product
             {
                 ProductName = productForCreate.ProductName,
@@ -27,11 +44,25 @@ namespace DrugStore.Services.ProductServices
                 Price = productForCreate.Price,
                 Quantity = productForCreate.Quantity,
                 BarCode = productForCreate.BarCode,
-                CompanyStoresId = productForCreate.CompanyStoresId
+                CompanyStoresId = productForCreate.CompanyStoresId,
             };
-            category.ProductCategory.Add(new ProductAndCategory { Products = product });
-            _drugDbContext.Categories.Attach(category);
+
             _drugDbContext.SaveChanges();
+            IList<Category> cate = _drugDbContext.Categories.ToList<Category>();
+            var query = from e in cate
+                        where productForCreate.categories.Contains(e.CategoryId)
+                        select e;
+            IList<Category> result = query.ToList<Category>();
+            foreach (var item in theList)
+            {
+                _drugDbContext.ProductCategories.AddRange(
+                    new ProductAndCategory
+                    {
+                        CategoryId = item.CategoryId,
+                        ProductId= product.ProductId
+                    });
+                _drugDbContext.SaveChanges();
+            }
         }
 
         public void DeleteProduct(Product products)

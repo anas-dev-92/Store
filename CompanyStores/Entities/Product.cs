@@ -24,7 +24,7 @@ namespace DrugStore.Entities
 = new List<ProductAndCategory>();
         public ICollection<TransportInvoice> transportInvoices { get; set; }
 = new List<TransportInvoice>();
-        public ICollection<CustomerInvoice> CustomerInvoices { get; set; }
+        public virtual ICollection<CustomerInvoice> CustomerInvoices { get; set; }
        = new List<CustomerInvoice>();
         public ICollection<ProductsReturn> ProductsReturn { get; set; }
       = new List<ProductsReturn>();

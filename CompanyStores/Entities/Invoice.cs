@@ -19,7 +19,7 @@ namespace DrugStore.Entities
         public Admin Admin { get; set; }
         public int CompanyStoresId { get; set; }
         public CompanyStore CompanyStores { get; set; }
-        public ICollection<CustomerInvoice> CustomerInvoices { get; set; }
+        public virtual ICollection<CustomerInvoice> CustomerInvoices { get; set; }
          = new List<CustomerInvoice>();
         public ICollection<ProductsReturn> ProductsReturn { get; set; }
          = new List<ProductsReturn>();

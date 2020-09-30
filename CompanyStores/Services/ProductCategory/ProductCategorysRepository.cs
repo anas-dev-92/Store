@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CompanyStores.Services.ProductCategory
@@ -75,6 +76,29 @@ namespace CompanyStores.Services.ProductCategory
             }
             return servicesResponse;
         }
+
+        public bool CreateProductCategory(List<int> ProductId, Category category)
+        {
+            var product = drugDb.Products.Where(p => ProductId.Contains(p.ProductId)).ToList();
+            foreach (var prod in product)
+            {
+                var productcategory = new ProductAndCategory()
+                {
+                    Products = prod,
+                    Categories = category
+
+                };
+                drugDb.ProductCategories.Add(productcategory);
+            }
+            drugDb.Add(category);
+            return save();
+        }
+        public bool save()
+        {
+            var saved = drugDb.SaveChanges();
+            return saved >= 0 ? true : false;
+        }
+
         //    public void CreateProductCategory(AddProductCategory addProductCategory)
         //{
         //    var Category = new Category

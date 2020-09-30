@@ -56,60 +56,76 @@ namespace DrugStore.Services.CustomerInvoiceServices
         {
 
         }
-        public async Task<ServicesResponse<InvoiceForGet>> AddCustomerInvoice(AddCustomerInvoice addCustomerInvoice)
-        {
-            ServicesResponse<InvoiceForGet> servicesResponse = new ServicesResponse<InvoiceForGet>();
-            try
-            {
-                //another way to git the list of the id in object 
-                //List<int> list = new List<int>();
-                //foreach (product item in Products)
-                //{
-                //    list.Add(product.Id);
-                //}
+
+        //public bool CreateInvoice(List<int> ProductId, Invoice invoice)
+        //{
+        //    var productId = _drugDbContext.Products.Where(p => ProductId.Contains(p.ProductId)).ToList();
+        //    foreach (var prod in productId)
+        //    {
+        //        var customerInvoice = new CustomerInvoice()
+        //        {
+        //            Products = prod,
+        //            Invoice = invoice
+        //        };
+        //    }
+        //}
+        //public async Task<ServicesResponse<InvoiceForGet>> AddCustomerInvoice(AddCustomerInvoice addCustomerInvoice)
+        //{
+        //    ServicesResponse<InvoiceForGet> servicesResponse = new ServicesResponse<InvoiceForGet>();
+        //    try
+        //    {
+
+        //        Invoice invoice = new Invoice
+        //        {
+        //            InvoiceNote = addCustomerInvoice.InvoiceNote,
+        //            AdminId = addCustomerInvoice.AdminId,
+        //            CustomerId = addCustomerInvoice.CustomerId,
+        //            CompanyStoresId = addCustomerInvoice.CompanyStoresId,
+        //            InvoiceDate = addCustomerInvoice.InvoiceDate.Date
+
+        //        };
+
+        //        var result = addCustomerInvoice.productId;
 
 
-                //if (invoice == null)
-                //{
-                //    servicesResponse.Success = false;
-                //    servicesResponse.Message = "CategoryNotFound";
-                //    return servicesResponse;
-                //}
 
-                //if i want to add new category with the product
-                //Category category = new Category
-                //{
-                //    CategoryName = newProductCategory.CategoryName
-                //};
-                //drugDb.Categories.Add(category);
-                Invoice invoice = new Invoice
-                {
-                    InvoiceNote = addCustomerInvoice.InvoiceNote,
-                    AdminId = addCustomerInvoice.AdminId,
-                    CustomerId = addCustomerInvoice.CustomerId,
-                    CompanyStoresId = addCustomerInvoice.CompanyStoresId,
-                    InvoiceDate = addCustomerInvoice.InvoiceDate.Date
-                };
+        //        CustomerInvoice customerInvoice = new CustomerInvoice
+        //        {
+        //            Products = result,
+        //            Invoice = invoice
 
-                var result= await _drugDbContext.Products.Select(p => p.ProductId).ToListAsync();
-                
+        //        };
+        //        await _drugDbContext.CustomerInvoices.AddAsync(customerInvoice);
+        //        await _drugDbContext.SaveChangesAsync();
+        //        servicesResponse.Data = _mapper.Map<InvoiceForGet>(invoice);
+        //    }
+        //another way to git the list of the id in object 
+        //List<int> list = new List<int>();
+        //foreach (product item in Products)
+        //{
+        //    list.Add(product.Id);
+        //}
 
 
-                CustomerInvoice customerInvoice = new CustomerInvoice
-                {
-                    Products = result,
-                    Invoice = invoice
-                };
-                await _drugDbContext.CustomerInvoices.AddAsync(customerInvoice);
-                await _drugDbContext.SaveChangesAsync();
-                servicesResponse.Data = _mapper.Map<InvoiceForGet>(invoice);
-            }
-            catch (Exception ex)
-            {
-                servicesResponse.Success = false;
-                servicesResponse.Message = ex.Message;
-            }
-            return servicesResponse;
-        }
+        //if (invoice == null)
+        //{
+        //    servicesResponse.Success = false;
+        //    servicesResponse.Message = "CategoryNotFound";
+        //    return servicesResponse;
+        //}
+
+        //if i want to add new category with the product
+        //Category category = new Category
+        //{
+        //    CategoryName = newProductCategory.CategoryName
+        //};
+        //drugDb.Categories.Add(category);
+        //    catch (Exception ex)
+        //    {
+        //        servicesResponse.Success = false;
+        //        servicesResponse.Message = ex.Message;
+        //    }
+        //    return servicesResponse;
+        //}
     }
 }

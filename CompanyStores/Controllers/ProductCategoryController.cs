@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CompanyStores.Models.ProductCategory;
 using CompanyStores.Services.ProductCategory;
+using DrugStore.Controller;
 using DrugStore.Entities;
+using DrugStore.Model.CategoryModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Asn1.Mozilla;
@@ -24,11 +26,16 @@ namespace CompanyStores.Controllers
             _productCategory = productCategory;
             _mapper = mapper;
         }
-        [HttpPost]
-        public async Task<IActionResult> AddProductCategory(AddProductCategory productCategory)
-        {
-            return Ok(await _productCategory.AddProductCategory(productCategory));
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> AddProductCategory(AddProductCategory productCategory)
+        //{
+        //    return Ok(await _productCategory.AddProductCategory(productCategory));
+        //}
+        //[HttpPost]
+        //public IActionResult CreateCategorys([FromBody]Category category)
+        //{
+        //    return Ok(_productCategory.CreateProductCategory(category));
+        //}
         //[HttpPost]
         //public async Task<IActionResult> CreateProductCategory([FromBody]AddProductCategory addProductCategory)
         //{

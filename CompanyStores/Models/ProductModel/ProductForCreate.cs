@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DrugStore.Entities;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace DrugStore.Model.ProductModel
         public string BarCode { get; set; }
         public float BuyPrice { get; set; }
         public int CompanyStoresId { get; set; }
-        public int CategoryId { get; set; }
+        public ICollection<Category> categories { get; set; }
+= new List<Category>();
 
     }
 }

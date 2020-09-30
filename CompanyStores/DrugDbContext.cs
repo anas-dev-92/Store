@@ -140,14 +140,14 @@ namespace DrugStore
                 entity.Property(c => c.Quantity).IsRequired();
                 entity.Property(c => c.TotalPrice).IsRequired();
             });
-            modelBuilder.Entity<CustomerInvoice>(entity =>
-            {
-                entity.HasOne(c => c.Products)
-                       .WithMany(p => p.CustomerInvoices)
-                       .HasForeignKey(c => c.ProductId)
-                       .IsRequired(false)
-                       .OnDelete(DeleteBehavior.NoAction);
-            });
+            //modelBuilder.Entity<CustomerInvoice>(entity =>
+            //{
+            //    entity.HasOne(c => c.Products)
+            //           .WithMany(p => p.CustomerInvoices)
+            //           .HasForeignKey(c => c.ProductId)
+            //           .IsRequired(false)
+            //           .OnDelete(DeleteBehavior.NoAction);
+            //});
             modelBuilder.Entity<CustomerInvoice>(entity =>
             {
                 entity.HasOne(c => c.Invoice)
